@@ -1,0 +1,43 @@
+<!-- <body>
+<form method="POST" style="margin-top: 3rem;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn" id="viewplots" type="submit">결과</button>
+</form>
+</body> -->
+
+<head>
+    {% load static %}
+    <link href="{% static '/materialize.css' %}" rel="stylesheet">
+    <link href="{% static '/custom.css' %}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button class="btn" id="view" type="submit">결과보기</button>
+        </form>
+        <div id="loading" class="loading" data-load="loading"></div>
+
+        <div style="width:1000;height:500" onload="loading();">
+            {{ buy_sell_graph|safe }}
+        </div>
+
+        <div style="width:1000;height:500">
+            {{ gain_loss_graph|safe }}
+        </div>
+
+        <div style="width:1000;height:500">
+            {{ total_cash_graph|safe }}
+        </div>
+
+        <div style="width:1000;height:500">
+            {{ total_cash_buy_hold_graph|safe }}
+        </div>
+    </div>
+</body>
+

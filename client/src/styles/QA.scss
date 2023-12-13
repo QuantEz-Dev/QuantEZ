@@ -1,0 +1,231 @@
+.qa-container {
+  height: 100%;
+  margin: 0 auto;
+}
+
+.qa-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.qa-title {
+  width: 100%;
+  margin-top: 3rem;
+  margin-left: 8rem;
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.qa-user-input {
+  margin-top: 4rem;
+  border-top: 2px solid #000;
+  line-height: 160%;
+}
+
+.qa-user-title {
+  margin-top: 0.7rem;
+  margin-bottom: 3rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid #000;
+}
+
+.qa-user-title dl {
+  display: flex;
+  margin-left: 1.5rem;
+}
+
+.qa-user-title dt {
+  margin-right: 4rem;
+}
+.user-title-input {
+  border: 1px;
+}
+
+
+.ql-editor {
+  height: 600px;
+}
+
+.submit-btn {
+  display: flex;
+  margin-top: 5rem;
+  margin-right: 7rem;
+  margin-bottom: 16rem;
+  float: right;
+
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: inset 0px -2px 1px #3c0094;
+  transition: 0.1s;
+  text-align: center;
+  vertical-align: middle;
+  padding: 6px 12px;
+  border-radius: 3px;
+
+  background-color: #5400CF;
+  border: 1px solid #4408a8;
+}
+
+/* PostList */
+.qa-title {
+  span {
+    font-size: 2.5rem;
+  }
+}
+
+.qalist-wrap {
+  width: 100%;
+  height: 10rem;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+
+  button {
+    &:hover {
+      color: #fff;
+    }
+  }
+  }
+
+.qalist-container {
+  margin: 0 auto;
+  width: 60rem;
+  height: 15rem;
+
+  .qalist-header {
+    width: 100%;
+    height: 3rem;
+    border-top: 2px solid black;
+    border-bottom: 2px solid #ccc;
+  }
+
+  .qalist-flex {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+
+    .qalist-num {
+      width: 10%;
+      margin: 0 1rem;
+    }
+
+    .qalist-title {
+      width: 50%;
+      margin: 0 1rem;
+    }
+
+    .qalist-writer {
+      width: 10%;
+      margin: 0 1rem;
+    }
+
+    .qalist-date {
+      width: 20%;
+      margin: 0 1rem;
+    }
+  }
+}
+
+.qalist-content {
+  border-bottom: 1px solid #ccc;
+  height: 2.5rem;
+  font-weight: 500 !important;
+  font-size: 0.8rem;
+}
+
+.qalist-title {
+  width: 50%;
+  margin: 0 1rem;
+  text-align: center;
+  justify-content: center;
+}
+
+// DummyQA
+.question-wrap {
+  margin: 3rem auto;
+  width: 80%;
+  height: 100%;
+
+  .question-entire-title {
+    margin-left: 8rem;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+  }
+
+  .question-container {
+    margin: 0 auto;
+    width: 80%;
+    height: 80%;
+
+    .question-title {
+      border-top: 2px solid black;
+      border-bottom: 1px dashed black;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      padding-left: 2rem;
+
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+
+    .question-status {
+      display: flex;
+      height: 2.4rem;
+      align-items: center;
+      border-bottom: 1px solid black;
+      padding-left: 2rem;
+
+      .question-bold {
+        margin-right: 2rem;
+        font-weight: 600;
+      }
+
+      .question-num {
+        margin-right: 4rem;
+      }
+
+      .question-writer {
+        margin-right: 4rem;
+      }
+    } 
+
+    .question-q-content {
+      padding: 2rem;
+      height: 20rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid black;
+    }
+  }
+
+  .answer-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-left: 8rem;
+  }
+  .answer-wrap {
+    margin: 2rem auto;
+    width: 80%;
+    height: auto;
+    border-top: 2px solid black;
+    border-bottom: 1px dashed black;
+
+    .answer-content {
+      padding: 2rem;
+      line-height: 180%;
+    }
+    .answer-writer {
+      padding-right:2rem ;
+      padding-bottom: 1rem;
+      display: flex;
+      color: #ccc;
+      justify-content: end;
+    }
+  }
+
+}
+

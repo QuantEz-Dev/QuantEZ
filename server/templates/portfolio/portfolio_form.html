@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h5 class="my-3 border-bottom pb-2">포트등록</h5>
+        <form method="post">
+            {% csrf_token %}
+            <!-- 오류나면 여기 -->
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <div>
+                                <strong>{{ field.label }}</strong>
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <!-- 오류끝 -->
+            <div class="mb-3">
+                <label for="subject" class="form-label">포트제목</label>
+                <input type="text" class="form-control" name="subject" id="subject"
+                       value="{{ form.subject.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">포트내용</label>
+                <input type="text" class="form-control" name="content" id="content"
+                       value="{{ form.subject.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="fast" class="form-label">작은 이동평균선</label>
+                <input type="text" class="form-control" name="fast" id="fast"
+                       value="{{ form.subject.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="slow" class="form-label">큰 평균이동선</label>
+                <input type="text" class="form-control" name="slow" id="slow"
+                       value="{{ form.subject.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="crossover" class="form-label">크로스오버</label>
+                <input type="text" class="form-control" name="crossover" id="crossover"
+                       value="{{ form.subject.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="size" class="form-label">회당 매수, 매도 크기</label>
+                <input type="text" class="form-control" name="size" id="size"
+                       value="{{ form.subject.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="charge" class="form-label">수수료율</label>
+                <input type="text" class="form-control" name="charge" id="charge"
+                       value="{{ form.subject.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="stockcode" class="form-label">주가코드</label>
+                <input type="text" class="form-control" name="stockcode" id="stockcode"
+                       value="{{ form.subject.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="start_date" class="form-label">운용시작일</label>
+                <p>2020-01-01 형식으로 입력하세요</p>
+                <input type="text" class="form-control" name="start_date" id="start_date"
+                       value="{{ form.subject.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="end_date" class="form-label">운용마감일</label>
+                <p>2020-01-01 형식으로 입력하세요</p>
+                <input type="text" class="form-control" name="end_date" id="end_date"
+                       value="{{ form.subject.value|default_if_none:'' }}">
+            </div>
+            <button type="submit" class="btn btn-primary">저장하기</button>
+        </form>
+    </div>
+{% endblock %}

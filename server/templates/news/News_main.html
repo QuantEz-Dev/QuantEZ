@@ -1,0 +1,49 @@
+{% include "navbar.html" %}
+<!-- News_main.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News Main Page</title>
+</head>
+<body>
+    <h1>Top 3 업종별 시세</h1>
+    <ul>
+        {% for item in sise_data %}
+            <li>{{ item.title }} - {{ item.diff }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Top 7 기관 순매수</h1>
+    <ul>
+        {% for item in organ_data %}
+            <li>{{ item.title }} - {{ item.price }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Top 10 인기검색</h1>
+    <ul>
+        {% for item1 in data1 %} <!-- 이름 -->
+            <li>{{ item1.toptext1 }}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for item2 in data2 %}<!-- 이름 + 주가 -->
+            <li>{{ item2.toptext2 }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>인기 기업</h1>
+    <ul>
+        {% for comp in comps %}
+            <li>{{ comp.comp }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>KOSPI Top 50</h1>
+    <ul>
+        {% for item in context %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

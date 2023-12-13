@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asset List</title>
+</head>
+<body>
+<h1>Asset List</h1>
+<ul>
+    {% for asset in assets %}
+        <li>
+            <strong>Subject:</strong> {{ asset.subject }}<br>
+            <strong>Content:</strong> {{ asset.content }}<br>
+            <strong>Bond:</strong> {{ asset.bond }}<br>
+            <strong>Fund:</strong> {{ asset.fund }}<br>
+            <strong>ETF:</strong> {{ asset.etf }}<br>
+            <strong>기타:</strong> {{ asset.etc }}<br>
+            <strong>생성일:</strong> {{ asset.create_date }}<br>
+            <strong>수정일:</strong> {{ asset.modify_date }}<br>
+
+            <a href="{% url 'assetmanagement:asset_modify' asset.id %}">수정</a>
+            <a href="{% url 'assetmanagement:asset_delete' asset.id %}">삭제</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'assetmanagement:asset_create' %}">새 자산 생성</a>
+</body>
+</html>

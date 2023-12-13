@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h5 class="my-3 border-bottom pb-2">Asset 등록</h5>
+        <form method="post">
+            {% csrf_token %}
+            <!-- 오류표시 -->
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <div>
+                                <strong>{{ field.label }}</strong>
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <!-- 오류표시 여기까지 -->
+            <div class="mb-3">
+                <label for="subject" class="form-label">제목</label>
+                <input type="text" class="form-control" name="subject" id="subject"
+                       value="{{ form.subject.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">내용</label>
+                <textarea class="form-control" name="content"
+                          id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="bond" class="form-label">채권</label>
+                <input type="text" class="form-control" name="bond" id="subject"
+                       value="{{ form.bond.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="fund" class="form-label">펀드</label>
+                <input type="text" class="form-control" name="fund" id="subject"
+                       value="{{ form.fund.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="etf" class="form-label">ETF</label>
+                <input type="text" class="form-control" name="etf" id="subject"
+                       value="{{ form.etf.value|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <label for="etc" class="form-label">기타</label>
+                <input type="text" class="form-control" name="etc" id="subject"
+                       value="{{ form.etc.value|default_if_none:'' }}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">저장하기</button>
+        </form>
+    </div>
+{% endblock %}

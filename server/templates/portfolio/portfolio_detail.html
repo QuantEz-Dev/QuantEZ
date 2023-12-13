@@ -1,0 +1,117 @@
+<!-- localhost:8000/portfolio/"여기 id" -->
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container my-3">
+        <!-- message 표시 -->
+        {% if messages %}
+            <div class="alert alert-danger my-3" role="alert">
+                {% for message in messages %}
+                    <strong>{{ message.tags }}</strong>
+                    <ul><li>{{ message.message }}</li></ul>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="card my-3">
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;">포트제목 - {{ portfolio.subject }}</div>
+                <div class="card-text" style="white-space: pre-line;">포트내용 - {{ portfolio.content }}</div>
+                <div class="card-text" style="white-space: pre-line;">작은 이동평균선 - {{ portfolio.fast }}</div>
+                <div class="card-text" style="white-space: pre-line;">큰 이동평균선 - {{ portfolio.slow }}</div>
+                <div class="card-text" style="white-space: pre-line;">크로스오버 - {{ portfolio.crossover }}</div>
+                <div class="card-text" style="white-space: pre-line;">회당 매수, 매도 크기 - {{ portfolio.size }}</div>
+                <div class="card-text" style="white-space: pre-line;">수수료율 - {{ portfolio.charge }}</div>
+                <div class="card-text" style="white-space: pre-line;">주가코드 - {{ portfolio.stockcode }}</div>
+                <div class="card-text" style="white-space: pre-line;">운용시작일 - {{ portfolio.start_date }}</div>
+                <div class="card-text" style="white-space: pre-line;">운용마감일 - {{ portfolio.end_date }}</div>
+                <div class="card-text" style="white-space: pre-line;">포트생성일 - {{ portfolio.create_date }}</div>
+                <div class="card-text" style="white-space: pre-line;">포트수정일 - {{ portfolio.modify_date }}</div>
+                <div class="d-flex justify-content-end">
+                    
+                    {% if portfolio.modify_date %}
+                        <div class="badge bg-light text-dark p-2 text-start mx-3">
+                            <div class="mb-2">{{ portfolio.author.username }}</div>
+                            <div>{{ portfolio.modify_date }}</div>
+                        </div>
+                    {% endif %}
+                    <div class="badge bg-light text-dark p-2 text-start">
+                        <div class="mb-2">{{ portfolio.author.username }}</div>
+                        <div>{{ portfolio.create_date }}</div>
+                    </div>
+                </div>
+                <div class="my-3">
+                    {% if request.user == portfolio.author %}
+                        <a href="{% url 'portfolio:portfolio_modify' portfolio.id  %}"
+                           class="btn btn-sm btn-outline-secondary">수정</a>
+                        <a href="#" class="delete btn btn-sm btn-outline-secondary"
+                           data-uri="{% url 'portfolio:portfolio_delete' portfolio.id  %}">삭제</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div> <!-- 여기까지 오른쪽 칸 -->
+        <!-- 답변 -->
+        <h5 class="border-bottom my-3 py-2">{{portfolio.reply_set.count}}개의 답변이 있습니다.</h5>
+        {% for reply in portfolio.reply_set.all %}
+            <div class="card my-3">
+                <div class="card-body">
+                    <div class="card-text" style="white-space: pre-line;">{{ reply.content }}</div>
+                    <div class="d-flex justify-content-end">
+                        {% if reply.modify_date %}
+                            <div class="badge bg-light text-dark p-2 text-start mx-3">
+                                <div class="mb-2">{{ reply.author.username }}</div>
+                                <div>{{ reply.modify_date }}</div>
+                            </div>
+                        {% endif %}
+                        <div class="badge bg-light text-dark p-2 text-start">
+                            <div class="mb-2">{{ portfolio.author.username }}</div>
+                            <div>{{ portfolio.create_date }}</div>
+                        </div>
+                    </div>
+                    <div class="my-3">
+                        {% if request.user == reply.author %}
+                            <a href="{% url 'portfolio:reply_modify' reply.id  %}"
+                               class="btn btn-sm btn-outline-secondary">수정</a>
+                            <a href="#" class="delete btn btn-sm btn-outline-secondary "
+                               data-uri="{% url 'portfolio:reply_delete' reply.id  %}">삭제</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <!-- 답변 등록 -->
+        <form action="{% url 'portfolio:reply_create' portfolio.id %}" method="post" class="my-3">
+            {% csrf_token %}
+            <!-- 오류표시 -->
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <div>
+                                <strong>{{ field.label }}</strong>
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <!-- 오류표시 -->
+            <div class="mb-3">
+                <label for="content" class="form-label">답변내용</label>
+                <textarea {% if not user.is_authenticated %}disabled{% endif %}
+                          name="content" id="content" class="form-control" rows="10"></textarea><!--로그인 안 되어 있으면 disabled-->
+            </div>
+            <input type="submit" value="답변등록" class="btn btn-primary">
+        </form>
+    </div>
+{% endblock %}
+{% block script %}
+    <script type='text/javascript'>
+        const delete_elements = document.getElementsByClassName("delete");
+        Array.from(delete_elements).forEach(function(element) {
+            element.addEventListener('click', function() {
+                if(confirm("정말로 삭제하시겠습니까?")) {
+                    location.href = this.dataset.uri;
+                };
+            });
+        });
+    </script>
+{% endblock %}

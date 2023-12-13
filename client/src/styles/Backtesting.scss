@@ -1,0 +1,27 @@
+.btWrapper {
+  margin: 0 auto;
+  width: 100%;
+  height: 55rem;
+
+  .btContainer {
+    margin: 5rem auto;
+    width: 90%;
+    height: 100%;
+
+    .btTitle {
+      margin-left: 3rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .loadBacktest {
+      margin-left: 5rem;
+
+      iframe {
+        width: 100%;
+        height:40rem;
+
+      }
+    }
+  }
+}
